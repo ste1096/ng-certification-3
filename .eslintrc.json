@@ -1,0 +1,81 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": ["simple-import-sort", "unused-imports"],
+  "rules": {
+    // ESLint plugins
+    // "simple-import-sort/imports": 1,
+    "simple-import-sort/exports": 1,
+    "unused-imports/no-unused-imports": 1,
+
+    // ESLint
+    "camelcase": 0,
+    "consistent-return": 1,
+    // "complexity": [1, 10],
+    "curly": [1, "multi-line", "consistent"],
+    // "dot-notation": 1,
+    "eqeqeq": [1, "always"],
+    "lines-between-class-members": [1, "always", { "exceptAfterSingleLine": true }],
+    // "max-depth": [1, 4],
+    "no-duplicate-imports": 1,
+    "no-else-return": 1,
+    "no-empty-pattern": 0,
+    "no-extra-boolean-cast": [1, { "enforceForLogicalOperands": true }],
+    "no-lonely-if": 1,
+    "no-mixed-spaces-and-tabs": 1,
+    // "no-negated-condition": 1,
+    "no-param-reassign": 1,
+    "no-unsafe-optional-chaining": 1,
+    "no-unused-vars": 1,
+    "no-useless-concat": 1,
+    "no-useless-rename": 1,
+    "no-useless-return": 1,
+    "no-var": 1,
+    "operator-assignment": [1, "always"],
+    "prefer-template": 1,
+    "quotes": [1, "single"],
+    "yoda": 1,
+
+    // Typescript
+    "@typescript-eslint/array-type": [1, { "default": "array"}],
+    "@typescript-eslint/ban-types": 0,
+    // "@typescript-eslint/consistent-indexed-object-style": [1, "record"],
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-for-in-array": 1,
+    "@typescript-eslint/no-inferrable-types": 1,
+    "@typescript-eslint/prefer-for-of": 1,
+    // "@typescript-eslint/prefer-optional-chain": 1,
+
+    // Prettier
+    "prettier/prettier": [
+      1,
+      {
+        "endOfLine": "auto",
+        "printWidth": 100,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "bracketSpacing": true,
+        "bracketSameLine": false,
+        "arrowParens": "always",
+        "rangeStart": 0,
+        "parser": "babel-ts",
+        "requirePragma": false,
+        "insertPragma": false,
+        "proseWrap": "preserve"
+      }
+    ]
+  }
+}
