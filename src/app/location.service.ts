@@ -11,7 +11,7 @@ export class LocationService {
   constructor(private weatherService: WeatherService) {
     const locString = localStorage.getItem(LOCATIONS)
     if (locString) this.locations = JSON.parse(locString)
-    for (const loc of this.locations) this.weatherService.addCurrentConditions(loc)
+    //for (const loc of this.locations) this.weatherService.addCurrentConditions(loc)
   }
 
   addLocation(zipcode: string) {

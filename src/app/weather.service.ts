@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs'
+import { forkJoin, Observable, of, zip } from 'rxjs'
+import { map, mergeMap } from 'rxjs/operators'
 
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
@@ -15,8 +16,9 @@ export class WeatherService {
 
   addCurrentConditions(zipcode: string): void {
     // Here we make a request to get the curretn conditions data from the API. Note the use of backticks and an expression to insert the zipcode
-    this.http.get(`${WeatherService.URL}/weather?zip=${zipcode},us&units=imperial&APPID=${WeatherService.APPID}`)
-      .subscribe(data => this.currentConditions.push({zip: zipcode, data: data}) );
+    this.getCondition(zipcode).subscribe(
+      data => this.currentConditions.push({zip: zipcode, data: data}) 
+    )
   }
 
   removeCurrentConditions(zipcode: string) {
@@ -26,14 +28,34 @@ export class WeatherService {
     }
   }
 
+  updateCurrentConditions(locations: string[]): void {
+    const conditions$: Observable<any>[] = []
+    locations?.forEach((zipcode)=>{
+      conditions$.push(this.getCondition(zipcode))
+    })
+    forkJoin(conditions$).pipe(
+      map((conditions) => conditions?.map(
+        (condition, index) => {
+          const zipcode = locations[index]
+          return {zip: zipcode, data: condition}
+        })
+      )
+    ).subscribe((conditions) => {
+      this.currentConditions = conditions
+    })
+  }
+
   getCurrentConditions(): any[] {
     return this.currentConditions;
+  }
+
+  getCondition(zipcode: string): Observable<any> {
+    return this.http.get(`${WeatherService.URL}/weather?zip=${zipcode},us&units=imperial&APPID=${WeatherService.APPID}`)
   }
 
   getForecast(zipcode: string): Observable<any> {
     // Here we make a request to get the forecast data from the API. Note the use of backticks and an expression to insert the zipcode
     return this.http.get(`${WeatherService.URL}/forecast/daily?zip=${zipcode},us&units=imperial&cnt=5&APPID=${WeatherService.APPID}`);
-
   }
 
   getWeatherIcon(id){
