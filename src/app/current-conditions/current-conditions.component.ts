@@ -1,4 +1,4 @@
-import { EMPTY, interval, Subscription } from 'rxjs'
+import { interval, Subscription } from 'rxjs'
 import { startWith, switchMap } from 'rxjs/operators'
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
@@ -30,16 +30,16 @@ export class CurrentConditionsComponent implements OnInit, OnDestroy {
   }
 
   getCurrentConditions() {
-    return this.weatherService.getCurrentConditions()
-  }
-
-  updateCurrentConditions() {
-    const locations = this.locationService.locations
-    return this.weatherService.updateCurrentConditions(locations)
+    return this.weatherService.getConditions()
   }
 
   showForecast(zipcode: string) {
     this.router.navigate(['/forecast', zipcode])
+  }
+
+  removeLocation(zipcode: string) {
+    this.locationService.removeLocation(zipcode)
+    this.weatherService.removeCondition(zipcode)
   }
 
   private initPolling() {
@@ -47,12 +47,12 @@ export class CurrentConditionsComponent implements OnInit, OnDestroy {
       .pipe(
         startWith(0),
         switchMap(() => {
-          this.updateCurrentConditions()
-          return EMPTY
+          const locations = this.locationService?.locations
+          return this.weatherService.fetchAllConditions(locations)
         })
       )
-      .subscribe(() => {
-        //do nothing
+      .subscribe((conditions) => {
+        this.weatherService.saveConditions(conditions)
       })
   }
 }

@@ -12,6 +12,7 @@ import { CurrentConditionsComponent } from './current-conditions/current-conditi
 import { ForecastsListComponent } from './forecasts-list/forecasts-list.component'
 import { LocationService } from './location.service'
 import { MainPageComponent } from './main-page/main-page.component'
+import { StateButtonComponent } from './state-button/state-button.component'
 import { WeatherService } from './weather.service'
 import { ZipcodeEntryComponent } from './zipcode-entry/zipcode-entry.component'
 
@@ -22,6 +23,7 @@ import { ZipcodeEntryComponent } from './zipcode-entry/zipcode-entry.component'
     ForecastsListComponent,
     CurrentConditionsComponent,
     MainPageComponent,
+    StateButtonComponent,
   ],
   imports: [
     BrowserModule,

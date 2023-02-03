@@ -1,0 +1,7 @@
+button {
+  border: none;
+}
+
+:disabled {
+  opacity: 0.5;
+}
