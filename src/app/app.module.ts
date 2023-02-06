@@ -8,13 +8,19 @@ import { ServiceWorkerModule } from '@angular/service-worker'
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { routing } from './app.routing'
-import { CurrentConditionsComponent } from './current-conditions/current-conditions.component'
-import { ForecastsListComponent } from './forecasts-list/forecasts-list.component'
-import { LocationService } from './location.service'
-import { MainPageComponent } from './main-page/main-page.component'
-import { StateButtonComponent } from './state-button/state-button.component'
-import { WeatherService } from './weather.service'
-import { ZipcodeEntryComponent } from './zipcode-entry/zipcode-entry.component'
+import {
+  CurrentConditionsComponent,
+  ForecastsListComponent,
+  InputSelectSearchComponent,
+  MainPageComponent,
+  StateButtonComponent,
+  ZipcodeEntryComponent,
+} from './components'
+import { ClickOutsideDirective } from './directives/click-outside.directive'
+import { HighligthPipe } from './pipe/highlight.pipe'
+import { CountryService } from './services/country.service'
+import { LocationService } from './services/location.service'
+import { WeatherService } from './services/weather.service'
 
 @NgModule({
   declarations: [
@@ -24,6 +30,9 @@ import { ZipcodeEntryComponent } from './zipcode-entry/zipcode-entry.component'
     CurrentConditionsComponent,
     MainPageComponent,
     StateButtonComponent,
+    InputSelectSearchComponent,
+    ClickOutsideDirective,
+    HighligthPipe,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +42,7 @@ import { ZipcodeEntryComponent } from './zipcode-entry/zipcode-entry.component'
     routing,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [LocationService, WeatherService],
+  providers: [LocationService, WeatherService, CountryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

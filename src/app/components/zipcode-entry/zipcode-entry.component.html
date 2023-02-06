@@ -1,12 +1,25 @@
 <div class="well">
-  <h2>Enter a zipcode:</h2>
-  <input
-    type="text"
-    [(ngModel)]="zipcode"
-    placeholder="Zipcode"
-    class="form-control"
-  />
-  <br />
+  <div class="form-location">
+    <div class="country-container">
+      <h2>Enter a country:</h2>
+      <app-input-select-search
+        placeholder="Country*"
+        [options]="options"
+        (onChange)="onChangeCountry($event)"
+      ></app-input-select-search>
+      <br />
+    </div>
+    <div class="zipcode-container">
+      <h2>Enter a zipcode:</h2>
+      <input
+        type="text"
+        [(ngModel)]="zipcode"
+        placeholder="Zipcode*"
+        class="form-control"
+      />
+      <br />
+    </div>
+  </div>
 
   <app-state-button
     [action$]="addLocation()"
@@ -14,26 +27,20 @@
     [loadingTemplateRef]="addingLocationTemplate"
     [doneTemplateRef]="addedLocationTemplate"
     [errorTemplateRef]="errorLocationTemplate"
-    (onDone)="onAddedLocation($event)"
+    (onDone)="onAddedLocation($event, {zipcode, countrycode})"
   >
   </app-state-button>
 
   <ng-template #addLocationTemplate>
     <div class="btn btn-primary">Add location</div>
   </ng-template>
-
   <ng-template #addingLocationTemplate
     ><div class="btn btn-primary">Adding ...</div>
   </ng-template>
-
   <ng-template #addedLocationTemplate>
     <div class="btn btn-success">&#10003; Done</div>
   </ng-template>
-
   <ng-template #errorLocationTemplate>
     <div class="btn btn-danger">&times; Not found</div>
   </ng-template>
-  <!-- <button class="btn btn-primary" (click)="addLocation(zipcode.value)">
-    Add location
-  </button> -->
 </div>

@@ -1,0 +1,37 @@
+<div class="dropdown-collection">
+  <div (clickOutside)="closeDropdown()">
+    <input
+      #input
+      [placeholder]="placeholder"
+      class="form-control"
+      [ngClass]="{ 'hide-placeholder': !dropdownOpen && selectedOption?.name }"
+      aria-haspopup="listbox"
+      aria-labelledby="dropdown-label"
+      type="text"
+      [(ngModel)]="term"
+      (ngModelChange)="onChangeTerm($event)"
+      (click)="toggleDropdown()"
+    />
+    <span
+      class="selected-option"
+      (click)="clickSelectedOption($event)"
+      *ngIf="!dropdownOpen && selectedOption?.name"
+      >{{ selectedOption?.name }}</span
+    >
+  </div>
+  <ul
+    class="dropdown-list"
+    role="listbox"
+    aria-expanded="false"
+    [ngClass]="{ 'dropdown-open': dropdownOpen }"
+  >
+    <li
+      *ngFor="let option of currentOptions"
+      [ngClass]="{ selected: selectedOption === option }"
+      tabindex="0"
+      (click)="select(option)"
+      role="option"
+      [innerHTML]="option?.name | highlight : term"
+    ></li>
+  </ul>
+</div>

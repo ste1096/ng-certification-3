@@ -1,0 +1,12 @@
+.zipcode-container {
+  width: 40%;
+}
+
+.country-container {
+  width: 40%;
+}
+
+.form-location {
+  display: flex;
+  justify-content: space-between;
+}

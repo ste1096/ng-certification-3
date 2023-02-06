@@ -13,11 +13,12 @@ export class StateButtonComponent implements OnInit {
   @Input() loadingTemplateRef: TemplateRef<any>
   @Input() errorTemplateRef: TemplateRef<any>
   @Input() doneTemplateRef: TemplateRef<any>
+  @Input() disabled = false
 
   @Output() onDone: EventEmitter<any> = new EventEmitter<any>()
 
   currentTemplateRef: TemplateRef<any>
-  disabled = false
+  loading = false
   actionReset$ = timer(500)
 
   subscriptions: Subscription[] = []
@@ -33,17 +34,17 @@ export class StateButtonComponent implements OnInit {
   triggerAction() {
     if (this.action$) {
       this.currentTemplateRef = this.loadingTemplateRef
-      this.disabled = true
+      this.loading = true
       const subscription = this.action$.subscribe(
         (result) => {
           this.onDone.emit(result)
-          this.disabled = false
+          this.loading = false
           this.currentTemplateRef = this.doneTemplateRef
           this.resetState()
         },
         (error) => {
           this.currentTemplateRef = this.errorTemplateRef
-          this.disabled = false
+          this.loading = false
           this.resetState()
         }
       )

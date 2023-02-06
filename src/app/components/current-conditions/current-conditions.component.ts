@@ -4,8 +4,9 @@ import { startWith, switchMap } from 'rxjs/operators'
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { LocationService } from '../location.service'
-import { WeatherService } from '../weather.service'
+import { Location } from '../../interface/location.interface'
+import { LocationService } from '../../services/location.service'
+import { WeatherService } from '../../services/weather.service'
 
 @Component({
   selector: 'app-current-conditions',
@@ -33,13 +34,13 @@ export class CurrentConditionsComponent implements OnInit, OnDestroy {
     return this.weatherService.getConditions()
   }
 
-  showForecast(zipcode: string) {
-    this.router.navigate(['/forecast', zipcode])
+  showForecast(location: Location) {
+    this.router.navigate(['/forecast', location?.zipcode, location?.countrycode])
   }
 
-  removeLocation(zipcode: string) {
-    this.locationService.removeLocation(zipcode)
-    this.weatherService.removeCondition(zipcode)
+  removeLocation(location: Location) {
+    this.locationService.removeLocation(location)
+    this.weatherService.removeCondition(location)
   }
 
   private initPolling() {

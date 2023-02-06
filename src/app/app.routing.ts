@@ -1,8 +1,8 @@
 import { ModuleWithProviders } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
-import { ForecastsListComponent } from './forecasts-list/forecasts-list.component'
-import { MainPageComponent } from './main-page/main-page.component'
+import { MainPageComponent } from './components'
+import { ForecastsListComponent } from './components/forecasts-list/forecasts-list.component'
 
 const appRoutes: Routes = [
   {
@@ -10,7 +10,7 @@ const appRoutes: Routes = [
     component: MainPageComponent,
   },
   {
-    path: 'forecast/:zipcode',
+    path: 'forecast/:zipcode/:countrycode',
     component: ForecastsListComponent,
   },
 ]
