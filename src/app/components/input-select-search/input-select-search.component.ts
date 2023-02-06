@@ -65,15 +65,15 @@ export class InputSelectSearchComponent implements OnChanges {
     this.filterSearch(event)
   }
 
-  private filterSearch(term = '') {
-    this.currentOptions = this.options?.filter((opt) =>
-      opt?.name?.toUpperCase()?.includes(term?.toUpperCase())
-    )
-  }
-
   clickSelectedOption(event: Event) {
     event?.stopPropagation()
     this.inputElement?.nativeElement?.focus()
     this.toggleDropdown()
+  }
+
+  private filterSearch(term = '') {
+    this.currentOptions = this.options?.filter((opt) =>
+      opt?.name?.toUpperCase()?.includes(term?.toUpperCase())
+    )
   }
 }
