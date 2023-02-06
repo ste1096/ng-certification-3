@@ -4,7 +4,7 @@
       #input
       [placeholder]="placeholder"
       class="form-control"
-      [ngClass]="{ 'hide-placeholder': !dropdownOpen && selectedOption?.name }"
+      [ngClass]="{ 'hide-placeholder': !dropdownOpen && selectedOption }"
       aria-haspopup="listbox"
       aria-labelledby="dropdown-label"
       type="text"
@@ -15,7 +15,7 @@
     <span
       class="selected-option"
       (click)="clickSelectedOption($event)"
-      *ngIf="!dropdownOpen && selectedOption?.name"
+      *ngIf="!dropdownOpen && selectedOption"
       >{{ selectedOption?.name }}</span
     >
   </div>

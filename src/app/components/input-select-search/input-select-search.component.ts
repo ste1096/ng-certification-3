@@ -72,8 +72,8 @@ export class InputSelectSearchComponent implements OnChanges {
   }
 
   clickSelectedOption(event: Event) {
-    event.stopPropagation()
-    this.inputElement.nativeElement.focus()
+    event?.stopPropagation()
+    this.inputElement?.nativeElement?.focus()
     this.toggleDropdown()
   }
 }
