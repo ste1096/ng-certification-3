@@ -4,7 +4,7 @@ import { startWith, switchMap } from 'rxjs/operators'
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { Location } from '../../interface/location.interface'
+import { Location } from '../../interfaces/location.interface'
 import { LocationService } from '../../services/location.service'
 import { WeatherService } from '../../services/weather.service'
 

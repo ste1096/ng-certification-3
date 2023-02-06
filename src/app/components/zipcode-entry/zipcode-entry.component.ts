@@ -2,8 +2,8 @@ import { Observable, Subscription } from 'rxjs'
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
 
-import { Condition, Option } from '../../interface'
-import { Location } from '../../interface/location.interface'
+import { Condition, Option } from '../../interfaces'
+import { Location } from '../../interfaces/location.interface'
 import { CountryService } from '../../services/country.service'
 import { LocationService } from '../../services/location.service'
 import { WeatherService } from '../../services/weather.service'
@@ -16,7 +16,7 @@ import { WeatherService } from '../../services/weather.service'
 export class ZipcodeEntryComponent implements OnInit, OnDestroy {
   zipcode: string
   countrycode: string
-  options = []
+  options: Option[] = []
 
   subscription: Subscription
 
@@ -30,17 +30,9 @@ export class ZipcodeEntryComponent implements OnInit, OnDestroy {
     this.subscription = this.countryService.fetchAllCountries().subscribe((countries) => {
       this.options = countries
         ?.map((country) => {
-          return { name: country?.name, value: country?.code }
+          return { name: country?.name, value: country?.code } as Option
         })
-        ?.sort((a, b) => {
-          if (a.name < b.name) {
-            return -1
-          }
-          if (a.name > b.name) {
-            return 1
-          }
-          return 0
-        })
+        ?.sort((a, b) => this.sortCountryOptions(a, b))
     })
   }
 
@@ -63,5 +55,15 @@ export class ZipcodeEntryComponent implements OnInit, OnDestroy {
 
   onChangeCountry(option: Option) {
     this.countrycode = option?.value
+  }
+
+  private sortCountryOptions(a: Option, b: Option) {
+    if (a.name < b.name) {
+      return -1
+    }
+    if (a.name > b.name) {
+      return 1
+    }
+    return 0
   }
 }

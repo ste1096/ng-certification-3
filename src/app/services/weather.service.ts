@@ -4,8 +4,8 @@ import { map } from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
-import { Condition } from '../interface'
-import { Location } from '../interface/location.interface'
+import { Condition } from '../interfaces'
+import { Location } from '../interfaces/location.interface'
 
 @Injectable()
 export class WeatherService {

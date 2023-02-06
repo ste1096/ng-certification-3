@@ -2,7 +2,10 @@
   <div *ngFor="let condition of getCurrentConditions()" class="well flex">
     <div
       (click)="
-        showForecast({ zipcode: condition.zip, countrycode: condition.country })
+        showForecast({
+          zipcode: condition.zip,
+          countrycode: condition.country
+        })
       "
     >
       <h3>{{ condition.data.name }} ({{ condition.zip }})</h3>

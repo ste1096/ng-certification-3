@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import { Location } from '../interface/location.interface'
+import { Location } from '../interfaces/location.interface'
 
 export const LOCATIONS = 'locations'
 

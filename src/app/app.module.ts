@@ -17,7 +17,7 @@ import {
   ZipcodeEntryComponent,
 } from './components'
 import { ClickOutsideDirective } from './directives/click-outside.directive'
-import { HighligthPipe } from './pipe/highlight.pipe'
+import { HighligthPipe } from './pipes/highlight.pipe'
 import { CountryService } from './services/country.service'
 import { LocationService } from './services/location.service'
 import { WeatherService } from './services/weather.service'

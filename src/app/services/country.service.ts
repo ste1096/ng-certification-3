@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
-import { Country } from '../interface'
+import { Country } from '../interfaces'
 
 @Injectable()
 export class CountryService {

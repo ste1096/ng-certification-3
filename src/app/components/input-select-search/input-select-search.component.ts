@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core'
 
-import { Option } from '../../interface'
+import { Option } from '../../interfaces'
 
 @Component({
   selector: 'app-input-select-search',
